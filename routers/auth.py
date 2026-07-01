@@ -7,6 +7,7 @@
 from fastapi import APIRouter, Depends, Request, Form
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
+from flask import request
 from sqlalchemy.orm import Session
 
 from database import get_db
@@ -53,7 +54,8 @@ def register_user(
         username=username,
         email=email,
         password=password,  # plain text — ingat: ini hanya untuk pembelajaran!
-        full_name=full_name
+        full_name=full_name,
+        photo=None
     )
 
     # db.add() → tambahkan objek ke sesi (antrian penyimpanan)

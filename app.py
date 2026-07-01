@@ -9,13 +9,12 @@ import os
 import uvicorn
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-
 # Import koneksi database dan model
 from database import engine
 import models
 
 # Import router dari masing-masing modul fitur
-from routers import auth, profile
+from routers import auth, profile, inventaris
 
 # ── SETUP APLIKASI ─────────────────────────────────────────
 # FastAPI() membuat instance aplikasi web kita
@@ -38,6 +37,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 # Semua endpoint di auth.py dan profile.py akan tersedia di app ini.
 app.include_router(auth.router)
 app.include_router(profile.router)
+app.include_router(inventaris.router)
 
 
 # ── HALAMAN UTAMA ──────────────────────────────────────────
@@ -63,4 +63,4 @@ if __name__ == "__main__":
     # host="0.0.0.0" → bisa diakses dari jaringan lokal
     # port=8000 → nomor port
     # reload=True → otomatis restart kalau kode berubah (berguna saat development)
-    uvicorn.run("app:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("app:app", host="127.0.0.1", port=8000, reload=True)

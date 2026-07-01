@@ -42,7 +42,7 @@
     <div class="section-title">Upload Foto Profil</div>
 
     {# enctype="multipart/form-data" WAJIB untuk upload file #}
-    <form action="/profile/{{ user.id }}/upload-photo"
+    <form action="/profile/{{ user.id }}/upload"
           method="post"
           enctype="multipart/form-data">
 
@@ -60,7 +60,7 @@
     {# ── EDIT PROFIL ── #}
     <div class="section-title">Edit Informasi Profil</div>
 
-    <form action="/profile/{{ user.id }}/edit" method="post">
+    <form action="/profile/{{ user.id }}/update" method="post">
 
         <div class="form-group">
             <label>Nama Lengkap</label>
@@ -90,9 +90,11 @@
         <p style="margin-top:6px;"><strong>Nama:</strong> {{ user.full_name or '-' }}</p>
         <p style="margin-top:6px;"><strong>ID:</strong> #{{ user.id }}</p>
     </div>
-
-    <hr class="divider">
-
+    {# --- baru --- #}
+<hr class="divider">
+    <a href="/inventaris">
+        <button type="button" class="btn btn-secondary">Data Inventaris</button>
+    </a>
     {# ── LOGOUT & HAPUS AKUN ── #}
     <a href="/logout">
         <button type="button" class="btn btn-secondary">Logout</button>

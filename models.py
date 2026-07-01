@@ -5,7 +5,9 @@
 # kita tulis class Python, SQLAlchemy yang urus SQL-nya.
 # ============================================================
 
-from sqlalchemy import Column, Integer, String
+import datetime
+from datetime import datetime
+from sqlalchemy import Column, DateTime, Integer, String
 from database import Base
 
 # Class User merepresentasikan tabel bernama "users" di database.
@@ -37,3 +39,23 @@ class User(Base):
 
     # Nama file foto profil. Kosong kalau belum upload.
     photo = Column(String, nullable=True)
+
+class Barang(Base):
+
+    # __tablename__ menentukan nama tabel di database
+    __tablename__ = "Barang"
+
+    # Column(Integer, primary_key=True) → kolom angka, ID unik tiap user
+    # index=True supaya pencarian berdasarkan ID lebih cepat
+    id_barang = Column(Integer, primary_key=True, index=True)
+
+    # Column(String) → kolom teks
+    # unique=True → tidak boleh ada username yang sama
+    # index=True → pencarian username lebih cepat
+    nama_barang = Column(String, unique=True, index=True, nullable=False)
+
+    # Nama file foto profil. Kosong kalau belum upload.
+    photo_barang = Column(String, nullable=True)
+
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
